@@ -1,2 +1,15 @@
 <h1>Photos#new</h1>
-<p>Find me in app/views/photos/new.html.erb</p>
+
+
+<%= simple_form_for [@category,@photo] do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+   
+    <%= f.input :name, label: "Nom" %>
+    <%= f.input :description, label: "Description" %>
+    <%= f.input :image, as: :file %>
+
+  
+    <%= f.button :submit, "Sauvegarder", class: "btn btn-dark" %>  
+<% end %>
+

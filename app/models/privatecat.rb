@@ -1,0 +1,2 @@
+class Privatecat < ApplicationRecord
+end

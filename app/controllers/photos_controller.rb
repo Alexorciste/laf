@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
- 
+  skip_before_action :authenticate_user!
 
 
 
   def index
-    @photos = Photo.all
+    @photos = policy_scope(Photo)
   end
 
   def show  

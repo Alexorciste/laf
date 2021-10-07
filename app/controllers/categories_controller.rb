@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :skip_authorization
+  # before_action :skip_authorization, only: [:index, :show]
   
   def index
     @categories = policy_scope(Category)
@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    authorize @category
   end
 
   def create

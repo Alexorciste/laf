@@ -22,3 +22,15 @@
     
     
     }
+
+  .thumbpics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .thumbpics > img {
+    
+    width: 300px;
+    height: 400px;
+    background-repeat: none;
+    object-fit: cover;
+  }

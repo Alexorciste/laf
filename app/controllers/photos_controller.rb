@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-
+  after_action :verify_authorized, except: [:index, :show], unless: :skip_pundit?
 
   def index
     @photos = policy_scope(Photo)

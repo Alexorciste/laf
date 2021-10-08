@@ -6,14 +6,14 @@ class PhotoPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user || user.admin?
+    user.admin?
   end
 
   def update?
-    record.user == user || user.admin?
+    user.admin?
   end
 
   def destroy?
-    record.user == user || user.admin?
+    user.admin?
   end
 end

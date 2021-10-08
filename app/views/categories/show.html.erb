@@ -1,27 +1,27 @@
-<h1>Categories#show</h1>
 <div class="container">
   <h1 class="text-center"><%= @category.name %></h1>
  
   
-  
+  <div class="thumbpics">
   <% @category.photos.each do |photo|  %>
    
     <% if photo.image.attached? %> 
       
         
           <%# <%= link_to category_specialist_path(@category, specialist) do %>
-            <%= image_tag photo.image  %>
+            
+            <%= image_tag photo.image%>
               
                 <%= photo.name %> 
                 <%= photo.description %>
-              
+             
           <%# <% end %> 
         
     <% end%>
-    
+   
   
 
   <% end%>
-
+ </div> 
   </div>
 

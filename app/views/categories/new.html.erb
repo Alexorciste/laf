@@ -1,9 +1,12 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<h1>Categories</h1>
+ <p>Créer une nouvelle catégorie</p>
 
 
 <%= simple_form_for(@category) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit %>
+  <%= f.input :name%> 
   <%= f.input :image, as: :file %>
+  <%= f.submit %>
+  
 <% end %>
+
+<%= link_to "Retour à l'accueil", root_path %>

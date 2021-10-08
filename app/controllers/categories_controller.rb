@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  # before_action :skip_authorization, only: [:index, :show]
-  
+  after_action :verify_authorized, except: [:index, :show], unless: :skip_pundit?
+
   def index
     @categories = policy_scope(Category)
   end

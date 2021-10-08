@@ -15,6 +15,7 @@ class PhotosController < ApplicationController
   def new
     @photo = Photo.new
     @category = Category.find(params[:category_id])
+    authorize @photo
   end
 
   def create
@@ -25,6 +26,7 @@ class PhotosController < ApplicationController
     else
       render :new
     end
+    authorize @photo
   end
 
   def edit

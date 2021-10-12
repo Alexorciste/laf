@@ -32,6 +32,7 @@ class PhotosController < ApplicationController
   def edit
     @photo = Photo.find(params[:id])
     @category = @photo.category
+    authorize @photo
   end
 
   def update
@@ -41,12 +42,14 @@ class PhotosController < ApplicationController
     else
       render :edit
     end
+    authorize @photo
   end
 
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
     redirect_to category_path(@photo.category_id), notice: 'Photo supprimée.'
+    authorize @photo
   end
 
   private 

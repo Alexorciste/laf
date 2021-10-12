@@ -18,23 +18,26 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.create(category_params)
     redirect_to categories_path(@category)
+    authorize @category
   end
 
   def edit
     @category = Category.find(params[:id])
-   
+    authorize @category
   end
 
   def update
     @category = Category.find(params[:id])
     @category.update(category_params)
     redirect_to categories_path(@category)
+    authorize @category
   end
 
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path
+    authorize @category
   end
 
   private

@@ -1,26 +1,29 @@
-<%# <div class = "container"> %>
   <div class="banner-home">
     <h1>LAF</h1>
     <h2>Pictures for the Laife</h2>
-    <%# <div class="navmenu"> %>
-      <%# <div class="cards"> %>
          <% @categories.each do |category| %> 
     
              <% if category.image.attached? %>
                <%= link_to category_path(category) do %> 
-                 <%# <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path category.image.key, crop: :fill%>
-                              <%= category.name %>
-                              <%# </li>  %>
-
-                 <%# </div>  %>
-             <% end %>     
+                    <%= category.name %>
+               <% end %>     
               
-           <% end %>  
-  <% end %>   
-      <%# </div>  %>
-               
+            <% end %>  
 
-    <%# </div> %>
+             <% if policy(category).edit? %>
+              <%= link_to edit_category_path(category), class: "text" do %> 
+                <i class="far fa-edit"></i>
+                <% end %>
+            <% end %>  
+
+         <% if policy(category).destroy? %>
+                <%= link_to category, method: :delete, data: { confirm: 'Êtes-vous sûr-e ?' }, class: "text" do %> 
+                <i class="far fa-trash-alt"></i>
+                <% end %> 
+            <% end %>
+
+
+          <% end %>   
 
 </div>
 

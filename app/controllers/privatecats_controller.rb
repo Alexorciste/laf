@@ -1,7 +1,9 @@
 class PrivatecatsController < ApplicationController
+  # after_action :verify_authorized
+  
   def index
-    @pric=vatecats = policy_scope(Privatecat)
-    
+    @privatecats = policy_scope(Privatecat)
+   
   end
 
   def show

@@ -1,2 +1,10 @@
 <h1>Privatecats#new</h1>
 <p>Find me in app/views/privatecats/new.html.erb</p>
+
+<%= simple_form_for(@privatecat) do |f| %>
+     <%= f.input :name%> 
+    <%= f.input :images, as: :file, input_html: { multiple: true } %>
+    <%= f.submit %>
+<% end %>
+
+<%= link_to "Retour à l'accueil", root_path %>

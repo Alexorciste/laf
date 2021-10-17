@@ -1,6 +1,5 @@
 class PrivatecatsController < ApplicationController
-  # after_action :verify_authorized
-  
+  before_action :set_privatecat, only: [:show, :edit, :update, :destroy]  
   def index
     @privatecats = policy_scope(Privatecat)
    
@@ -20,7 +19,7 @@ class PrivatecatsController < ApplicationController
   def create
     @privatecat= Privatecat.create(privatecat_params)
     redirect_to privatecats_path(@privatecat)
-    authorize @category
+    authorize @privatecat
   end
 
   def update
@@ -34,7 +33,7 @@ class PrivatecatsController < ApplicationController
 
   private
   def privatecat_params
-    params.require(:privatecat).permit(:name, :images [])
+    params.require(:privatecat).permit(:name, images: [])
   end
 
   def set_privatecat

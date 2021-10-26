@@ -6,9 +6,9 @@ class PrivatecatsController < ApplicationController
   end
 
   def show
-    @privatecat = Privatecat.find(params[:id])
+    @userauth = User.find(@privatecat.private_assigns[0][:user_id])
+    @privatecat = Privatecat.find(params[:id]) 
     authorize @privatecat
-
   end
 
   def new

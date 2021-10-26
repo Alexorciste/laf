@@ -1,5 +1,6 @@
 class PrivateAssignsController < ApplicationController
-  after_action :verify_authorized, except: [:index, :show, :new], unless: :skip_pundit?
+  
+  # after_action :verify_authorized, except: [:index, :show, :new], unless: :skip_pundit?
 
   def index
     @private_assigns = PrivateAssign.all
@@ -18,9 +19,11 @@ class PrivateAssignsController < ApplicationController
   def create
     @privatecat = Privatecat.find(params[:privatecat_id])
     @users = User.where(email: params[:private_assign][:user])
+   
     @private_assign_name = params[:private_assign][:name]
 
     @users.each do |user|
+    
     @private_assign = PrivateAssign.create(name:  @private_assign_name, privatecat: @privatecat, user: user)
     authorize @private_assign
     end

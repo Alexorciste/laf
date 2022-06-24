@@ -1,9 +1,8 @@
 class ApplicationPolicy
   attr_reader :user, :record, :userauth
 
-  def initialize(context, record)
-    @user = context.user
-    @userauth = context.userauth
+  def initialize(user, record)
+    @user = user
     @record = record
   end
 

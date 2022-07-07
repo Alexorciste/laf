@@ -2,10 +2,7 @@ class PrivatecatPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.admin?
-        #  || record.user == @private_assign.user
         scope.all
-      # elsif
-      #   record.user == @private_assign.user
       else
         raise Pundit::NotAuthorizedError, 'not allowed to view this action'
       end
@@ -14,10 +11,9 @@ class PrivatecatPolicy < ApplicationPolicy
 
   def show?
 
-  # raise
 
-    user == userauth || user.admin?
-
+    user.id == @userauth || user.admin?
+    raise
 
 
 

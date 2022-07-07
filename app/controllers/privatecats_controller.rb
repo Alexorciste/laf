@@ -6,20 +6,30 @@ class PrivatecatsController < ApplicationController
   end
 
   def show
-    @userauth = User.find(@privatecat.private_assigns[0][:user_id])
+    @userauth = User.find(@privatecat.gallery_owner_id)
     @privatecat = Privatecat.find(params[:id])
     authorize @privatecat
   end
 
   def new
     @privatecat = Privatecat.new
+    @gallery_owner = @privatecat.gallery_owner&.first || @privatecat.build_gallery_owner
+    @emails = User.all.map { |user| user.email }
     authorize @privatecat
   end
 
   def create
     @privatecat = Privatecat.create(privatecat_params)
+    #@users = User.where(email: params[:privatecat][:gallery_owner])
+    #@privatecat_name = params[:privatecat][:name]
+
+    #@users.each do |user|
+    #  @gallery_owner = user.id
+    #  @privatecat = Privatecat.create(name: @privatecat_name, gallery_owner_id: @gallery_owner)
+    #end
+
     if @privatecat.save
-      redirect_to privatecats_path(@privatecat), notice: 'Cat créée.'
+      redirect_to privatecat_path(@privatecat), notice: 'Cat créée.'
     else
       render :new
     end
@@ -38,7 +48,7 @@ class PrivatecatsController < ApplicationController
 
   private
   def privatecat_params
-    params.require(:privatecat).permit(:name, images: [])
+    params.require(:privatecat).permit(:name, gallery_owner_attributes: [:id, :email], images: [])
   end
 
   def set_privatecat

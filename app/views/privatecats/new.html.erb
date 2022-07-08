@@ -5,7 +5,7 @@
      <%= f.input :name%>
      <%= f.input :images, as: :file, input_html: { multiple: true } %>
      <%= f.simple_fields_for :gallery_owner do |g|%>
-        <%= g.input :email, as: :select, :label => "Membres", collection: @emails, include_hidden: false%>
+        <%= g.input :catname, as: :select, :label => "Membres", collection: @catnames, include_hidden: false%>
     <% end %>
     <%= f.submit %>
 <% end %>

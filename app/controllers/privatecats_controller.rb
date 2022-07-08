@@ -14,12 +14,13 @@ class PrivatecatsController < ApplicationController
   def new
     @privatecat = Privatecat.new
     @gallery_owner = @privatecat.gallery_owner&.first || @privatecat.build_gallery_owner
-    @emails = User.all.map { |user| user.email }
+    @catnames = User.all.map { |user| user.catname }
     authorize @privatecat
   end
 
   def create
     @privatecat = Privatecat.create(privatecat_params)
+    raise
     #@users = User.where(email: params[:privatecat][:gallery_owner])
     #@privatecat_name = params[:privatecat][:name]
 
@@ -48,7 +49,7 @@ class PrivatecatsController < ApplicationController
 
   private
   def privatecat_params
-    params.require(:privatecat).permit(:name, gallery_owner_attributes: [:id, :email], images: [])
+    params.require(:privatecat).permit(:name, gallery_owner_attributes: [:id, :catname], images: [])
   end
 
   def set_privatecat

@@ -6,6 +6,7 @@ class PrivatecatsController < ApplicationController
 
   def show
     @privatecat = Privatecat.find(params[:id])
+    @authorized_user = User.find(@privatecat.gallery_owner_id)
     authorize @privatecat
   end
 

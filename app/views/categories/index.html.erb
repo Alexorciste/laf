@@ -5,7 +5,8 @@
 
       <% if category.image.attached? %>
           <%= link_to category_path(category) do %>
-              <%= category.name %>
+          <%= category.name %><br />
+              <%= cl_image_tag category.image.key, height: 300, width: 400, crop: :fill %>
           <% end %>
       <% end %>
 

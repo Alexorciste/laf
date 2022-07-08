@@ -1,6 +1,7 @@
-<h1>Privatecats#show</h1>
-<%= @privatecat.name %>
-<h2>ID Utlisateur autorisé</h2> <%= @privatecat.gallery_owner_id %><br />
+<h1><%= @privatecat.name %></h1><br />
+
 <% if current_user.admin? %>
-    <b>admin</b><%= current_user.email %>
+    <h4> Utilisateur autorisé</h4>
+    Email: <%= @authorized_user.email %><br />
+    Id: <%= @authorized_user.id %><br />
 <% end %>

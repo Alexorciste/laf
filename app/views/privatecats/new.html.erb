@@ -3,10 +3,8 @@
 
 <%= simple_form_for(@privatecat) do |f| %>
      <%= f.input :name%>
+     <%= f.input :gallery_owner, as: :select, :label => "Membres", collection: @emails, include_hidden: false%>
      <%= f.input :images, as: :file, input_html: { multiple: true } %>
-     <%= f.simple_fields_for :gallery_owner do |g|%>
-        <%= g.input :catname, as: :select, :label => "Membres", collection: @catnames, include_hidden: false%>
-    <% end %>
     <%= f.submit %>
 <% end %>
 

@@ -2,9 +2,9 @@
 <%= @privatecat.name %>
 <p>Find me in app/views/privatecats/show.html.erb</p>
 <h2>Utlisateur autorisé</h2>
-<%= @userauth.email %><br />
+<%= @privatecat.gallery_owner_id %><br />
 <% if current_user.admin? %>
 <b>admin</b>
     <%= current_user.email %>
 <% end %>
-<%# <% raise %> 
+<%# <% raise %>

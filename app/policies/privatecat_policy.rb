@@ -10,24 +10,18 @@ class PrivatecatPolicy < ApplicationPolicy
   end
 
   def show?
-
-
-    user.id == @userauth || user.admin?
-    raise
-
-
-
+    user.id == record.gallery_owner.id || user.admin?
   end
 
   def create?
-    true
+    user.nil? ? false : user.admin?
   end
 
   def update?
-    true
+    user.nil? ? false : user.admin?
   end
 
   def destroy?
-    user.admin?
+    user.nil? ? false : user.admin?
   end
 end

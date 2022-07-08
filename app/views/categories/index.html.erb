@@ -1,31 +1,24 @@
-  <div class="banner-home">
-    <h1>LAF</h1>
-    <h2>Pictures for the Laife</h2>
-         <% @categories.each do |category| %> 
-    
-             <% if category.image.attached? %>
-               <%= link_to category_path(category) do %> 
-                    <%= category.name %>
-               <% end %>     
-              
-            <% end %>  
+<div class="banner-home">
+  <h1>LAF</h1>
+  <h2>Pictures for the Laife</h2>
+    <% @categories.each do |category| %>
 
-             <% if policy(category).edit? %>
-              <%= link_to edit_category_path(category), class: "text" do %> 
-                <i class="far fa-edit"></i>
-                <% end %>
-            <% end %>  
+      <% if category.image.attached? %>
+          <%= link_to category_path(category) do %>
+              <%= category.name %>
+          <% end %>
+      <% end %>
 
-         <% if policy(category).destroy? %>
-                <%= link_to category, method: :delete, data: { confirm: 'Êtes-vous sûr-e ?' }, class: "text" do %> 
-                <i class="far fa-trash-alt"></i>
-                <% end %> 
-            <% end %>
+      <% if policy(category).edit? %>
+        <%= link_to edit_category_path(category), class: "text" do %>
+          <i class="far fa-edit"></i>
+        <% end %>
+      <% end %>
 
-
-          <% end %>   
-
+      <% if policy(category).destroy? %>
+          <%= link_to category, method: :delete, data: { confirm: 'Êtes-vous sûr-e ?' }, class: "text" do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
+      <% end %>
+    <% end %>
 </div>
-
-  
-              

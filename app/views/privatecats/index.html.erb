@@ -1,7 +1,12 @@
 <h1>Privatecats#index</h1>
 <p>Find me in app/views/privatecats/index.html.erb</p>
 <% @privatecats.each do |privatecat| %>
-<%= privatecat.name %> 
- 
-
+    <% if policy(privatecat).show? %>
+        <%= link_to privatecat_path(privatecat), class: "text" do %>
+            <%= privatecat.name%>
+            <i class="far fa-edit"></i>
+        <% end %>
+    <% end %>
 <% end %>
+
+

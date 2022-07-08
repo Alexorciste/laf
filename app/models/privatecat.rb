@@ -1,15 +1,6 @@
 class Privatecat < ApplicationRecord
-    has_many :private_assigns
-    belongs_to :user
     has_many_attached :images
-    
+    belongs_to :gallery_owner, class_name: "User", foreign_key: 'gallery_owner_id'
 end
 
-class CurrentContext
-    attr_reader :user, :userauth
-  
-    def initialize(user, userauth)
-      @user = user
-      @userauth = userauth
-    end
-  end
+

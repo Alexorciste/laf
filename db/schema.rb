@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_130600) do
+ActiveRecord::Schema.define(version: 2022_06_24_142059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,21 +51,12 @@ ActiveRecord::Schema.define(version: 2021_10_17_130600) do
     t.index ["category_id"], name: "index_photos_on_category_id"
   end
 
-  create_table "private_assigns", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "privatecat_id", null: false
-    t.string "name"
-    t.string "authorize"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["privatecat_id"], name: "index_private_assigns_on_privatecat_id"
-    t.index ["user_id"], name: "index_private_assigns_on_user_id"
-  end
-
   create_table "privatecats", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "gallery_owner_id"
+    t.index ["gallery_owner_id"], name: "index_privatecats_on_gallery_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,13 +68,11 @@ ActiveRecord::Schema.define(version: 2021_10_17_130600) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false, null: false
-    t.boolean "owner", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "photos", "categories"
-  add_foreign_key "private_assigns", "privatecats"
-  add_foreign_key "private_assigns", "users"
+  add_foreign_key "privatecats", "users", column: "gallery_owner_id"
 end

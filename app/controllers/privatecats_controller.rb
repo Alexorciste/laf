@@ -1,24 +1,36 @@
 class PrivatecatsController < ApplicationController
-  before_action :set_privatecat, only: [:show, :edit, :update, :destroy]  
+  before_action :set_privatecat, only: [:show, :edit, :update, :destroy]
   def index
     @privatecats = policy_scope(Privatecat)
-   
+
   end
 
   def show
-    @userauth = User.find(@privatecat.private_assigns[0][:user_id])
-    @privatecat = Privatecat.find(params[:id]) 
+    @privatecat = Privatecat.find(params[:id])
     authorize @privatecat
   end
 
   def new
     @privatecat = Privatecat.new
+    @emails = User.all.map { |user| user.email }
     authorize @privatecat
   end
 
   def create
-    @privatecat= Privatecat.create(privatecat_params)
-    redirect_to privatecats_path(@privatecat)
+
+    #@privatecat = Privatecat.create(privatecat_params)
+    @users = User.where(email: params[:privatecat][:gallery_owner])
+    @privatecat_name = params[:privatecat][:name]
+    @users.each do |user|
+      @gallery_owner = user.id
+      @privatecat = Privatecat.create(name: @privatecat_name, gallery_owner_id: @gallery_owner)
+    end
+
+    if @privatecat.save
+      redirect_to privatecat_path(@privatecat), notice: 'Cat créée.'
+    else
+      render :new
+    end
     authorize @privatecat
   end
 
@@ -37,9 +49,6 @@ class PrivatecatsController < ApplicationController
   end
 
   def set_privatecat
-  @privatecat = Privatecat.find(params[:id])
+    @privatecat = Privatecat.find(params[:id])
   end
-
-
-
 end

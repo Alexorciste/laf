@@ -2,7 +2,6 @@ class PrivatecatsController < ApplicationController
   before_action :set_privatecat, only: [:show, :edit, :update, :destroy]
   def index
     @privatecats = policy_scope(Privatecat)
-
   end
 
   def show

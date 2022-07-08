@@ -1,10 +1,6 @@
 <h1>Privatecats#show</h1>
 <%= @privatecat.name %>
-<p>Find me in app/views/privatecats/show.html.erb</p>
-<h2>Utlisateur autorisé</h2>
-<%= @privatecat.gallery_owner_id %><br />
+<h2>ID Utlisateur autorisé</h2> <%= @privatecat.gallery_owner_id %><br />
 <% if current_user.admin? %>
-<b>admin</b>
-    <%= current_user.email %>
+    <b>admin</b><%= current_user.email %>
 <% end %>
-<%# <% raise %>

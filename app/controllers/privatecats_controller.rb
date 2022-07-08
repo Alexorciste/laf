@@ -51,7 +51,4 @@ class PrivatecatsController < ApplicationController
   def set_privatecat
     @privatecat = Privatecat.find(params[:id])
   end
-
-
-
 end

@@ -6,10 +6,9 @@ class PhotosController < ApplicationController
     @photos = policy_scope(Photo)
   end
 
-  def show  
+  def show
     @category = Category.find(params[:category_id])
     @photo = Photo.find(params[:id])
-
   end
 
   def new
@@ -46,21 +45,20 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    @category = Category.find(params[:category_id])
     @photo = Photo.find(params[:id])
     @photo.destroy
+
     redirect_to category_path(@photo.category_id), notice: 'Photo supprimée.'
     authorize @photo
   end
 
-  private 
-
-  def set_photo
-   
-  end
+  private
 
   def photo_params
-    params.require(:photo).permit(:name, :description, :image) 
+    params.require(:photo).permit(:name, :description, :image)
   end
+
 
 
 end

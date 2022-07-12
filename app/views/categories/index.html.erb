@@ -3,7 +3,7 @@
   <h2>Pictures for the Laife</h2>
     <% @categories.each do |category| %>
 
-      <% if category.image.attached? %>
+     <% if category.image.attached? %>
           <%= link_to category_path(category) do %>
           <%= category.name %><br />
               <%= cl_image_tag category.image.key, height: 300, width: 400, crop: :fill %>

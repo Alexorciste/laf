@@ -29,13 +29,13 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:category_id])
+    @photo = Photo.find(params[:id])
     @category = @photo.category
     authorize @photo
   end
 
   def update
-    @photo = Photo.find(params[:category_id])
+    @photo = Photo.find(params[:id])
     if @photo.update(photo_params)
       redirect_to category_path(@photo.category), notice: 'Photo modifiée.'
     else

@@ -1,2 +1,0 @@
-class Privatepic < ApplicationRecord
-end

@@ -1,3 +1,2 @@
 class Privatepic < ApplicationRecord
-  
 end

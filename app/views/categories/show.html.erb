@@ -1,27 +1,17 @@
-<div class="container">
-  <h1 class="text-center"><%= @category.name %></h1>
-
- <div class = "container">
-  <div class="cards">
-  <% @category.photos.each do |photo|  %>
-
-    <% if photo.image.attached? %>
-
-              <div class="card-category" style="background-image: url('<%= cl_image_path photo.image.key, garvity: :faces, crop: :fill %>')">
-
-                <%= photo.name %>
-                <%= photo.description %>
-                <%= link_to category_photo_path(@category, photo), method: :delete, data: { confirm: 'Êtes-vous certain de vouloir effecer cette photo ?' }, class: "text" do %>
-                <i class="far fa-trash-alt"></i>
-            <% end %>
-
-            </div>
-
-    <% end%>
-
-
-  <% end%>
-
- </div>
+<h1 class="text-center"><%= @category.name %></h1>
+  <div class = "container">
+      <div class="cards">
+        <% @category.photos.each do |photo|  %>
+          <% if photo.image.attached? %>
+                    <div class="card-category" style="background-image: url('<%= cl_image_path photo.image.key, garvity: :faces, crop: :fill %>')">
+                      <%= photo.name %>
+                      <%= photo.description %>
+                      <%= link_to category_photo_path(@category, photo), method: :delete, data: { confirm: 'Êtes-vous certain de vouloir effecer cette photo ?' }, class: "text" do %>
+                      <i class="far fa-trash-alt"></i>
+                      <% end %>
+                  </div>
+          <% end%>
+        <% end%>
+    </div>
   </div>
   <%=link_to 'nouvelle photo', new_category_photo_path(@category)%>

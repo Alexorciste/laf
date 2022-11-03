@@ -1,12 +1,9 @@
 <h1>Categories</h1>
  <p>Créer une nouvelle catégorie</p>
-
-
 <%= simple_form_for(@category) do |f| %>
   <%= f.input :name%>
   <%= f.input :images, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
-
 <% end %>
 
 <%= link_to "Retour à l'accueil", root_path %>

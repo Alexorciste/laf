@@ -5,13 +5,17 @@
           <% if photo.image.attached? %>
                     <div class="card-category" style="background-image: url('<%= cl_image_path photo.image.key, garvity: :faces, crop: :fill %>')">
                       <%= photo.name %>
-                      <%= photo.description %>
-                      <%= link_to category_photo_path(@category, photo), method: :delete, data: { confirm: 'Êtes-vous certain de vouloir effecer cette photo ?' }, class: "text" do %>
-                      <i class="far fa-trash-alt"></i>
+                      <%= photo.description %><% if policy(photo).destroy? %>
+                      <% if policy(photo).destroy? %>
+                        <%= link_to category_photo_path(@category, photo), method: :delete, data: { confirm: 'Êtes-vous certain de vouloir effecer cette photo ?' }, class: "text" do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
                       <% end %>
                   </div>
           <% end%>
         <% end%>
     </div>
   </div>
+<% if policy(@category.photos).create? %>
   <%=link_to 'nouvelle photo', new_category_photo_path(@category)%>
+<% end%>

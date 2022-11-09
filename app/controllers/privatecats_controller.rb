@@ -17,13 +17,11 @@ class PrivatecatsController < ApplicationController
   end
 
   def create
-
-    #@privatecat = Privatecat.create(privatecat_params)
     @users = User.where(email: params[:privatecat][:gallery_owner])
-    @privatecat_name = params[:privatecat][:name]
     @users.each do |user|
       @gallery_owner = user.id
-      @privatecat = Privatecat.create(name: @privatecat_name, gallery_owner_id: @gallery_owner)
+      @privatecat = Privatecat.create(privatecat_params)
+      @privatecat.update(gallery_owner_id: @gallery_owner)
     end
 
     if @privatecat.save

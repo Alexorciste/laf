@@ -1,7 +1,9 @@
 <h1><%= @privatecat.name %></h1><br />
-
 <% if current_user.admin? %>
     <h4> Utilisateur autorisé</h4>
     Email: <%= @authorized_user.email %><br />
     Id: <%= @authorized_user.id %><br />
+<% end %>
+<% @privatecat.images.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>

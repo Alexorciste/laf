@@ -4,7 +4,7 @@
 
 <%= simple_form_for(@category) do |f| %>
   <%= f.input :name%>
-  <%= f.input :images, as: :file, input_html: { multiple: true } %>
+  <%= f.input :image, as: :file %>
   <%= f.submit %>
 
 <% end %>

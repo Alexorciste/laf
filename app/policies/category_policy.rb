@@ -4,23 +4,20 @@ class CategoryPolicy < ApplicationPolicy
       scope.all
     end
   end
-    
+
   # def show?
   #   true
   # end
- 
 
     def create?
-      user.nil? ? false : user.admin?
+      user&.admin?
     end
 
     def update?
-      user.nil? ? false : user.admin?
+      user&.admin?
     end
 
     def destroy?
-      user.nil? ? false : user.admin?
+      user&.admin?
     end
-
-  
 end

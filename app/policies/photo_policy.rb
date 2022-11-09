@@ -6,14 +6,14 @@ class PhotoPolicy < ApplicationPolicy
   end
 
   def create?
-    user.nil? ? false : user.admin?
+    user&.admin?
   end
 
   def update?
-    user.nil? ? false : user.admin?
+    user&.admin?
   end
 
   def destroy?
-    user.nil? ? false : user.admin?
+    user&.admin?
   end
 end

@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.create(category_params)
-    redirect_to categories_path(@category)
+    redirect_to categories_path
     authorize @category
   end
 
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     @category.update(category_params)
-    redirect_to categories_path(@category)
+    redirect_to categories_path
     authorize @category
   end
 
